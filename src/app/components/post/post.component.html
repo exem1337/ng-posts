@@ -1,0 +1,23 @@
+<div 
+  class="post"
+  (click)="onGoToPost()"
+>
+  <img [src]="post.image" alt="">
+  <lucide-angular 
+    name="x" 
+    class="post--delete"
+    (click)="onPostDelete($event)"
+  />
+  <div class="post--wrapper">
+    <p class="post--wrapper__title">
+      {{ post.title }}
+    </p>
+    <div class="post--wrapper__description">
+      <p class="post--wrapper__description--text">{{ post.description }}</p>
+      <div class="post--wrapper__description--info">
+        <p class="post--wrapper__description--info__author">Автор: {{ post.author.name }} {{ post.author.lastName }}</p>
+        <p class="post--wrapper__description--info__date">Дата создания: {{ post.date | date }}</p>
+      </div>
+    </div>
+  </div>
+</div>

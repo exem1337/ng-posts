@@ -7,3 +7,32 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.btn {
+  border: none;
+  padding: 8px 16px;
+  background-color: teal;
+  color: white;
+  font-weight: 700;
+  font-size: 1em;
+  cursor: pointer;
+  transition: .3s ease;
+  border-radius: 4px;
+
+  &:disabled {
+    background-color: lighten(teal, 10%);
+    pointer-events: none;
+  }
+  
+  &.header-btn {
+    font-size: 1.25em;
+  }
+
+  &:hover {
+    background-color: lighten(teal, 5%);
+  }
+}
+
+h3, h1 {
+  color: teal;
+}

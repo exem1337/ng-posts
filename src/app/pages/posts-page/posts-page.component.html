@@ -1,0 +1,12 @@
+<div 
+  *mobxAutorun
+  class="posts-page"
+>
+  <p *ngIf="!postsStore.posts?.length else posts">Постов нет</p>
+  <ng-template #posts>
+    <app-post 
+      *ngFor="let post of postsStore.posts"
+      [post]="post"
+    />
+  </ng-template>
+</div>

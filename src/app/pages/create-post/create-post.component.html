@@ -1,0 +1,88 @@
+<form
+  [formGroup]="postForm"
+  class="create-posts"
+  (submit)="onPostCreate()"
+>
+  <h3>Создание поста</h3>
+  <div class="create-posts--wrapper">
+    <div>
+      <input 
+        type="file" 
+        id="file"
+        class="create-posts__file" 
+        (change)="onFileChange($event)"
+      >
+      <label
+        *ngIf="!postForm.get('image')?.value else image" 
+        for="file" 
+        class="btn btn-image"
+      >
+        Добавить картинку
+      </label>
+      <ng-template #image>
+        <div class="img-container">
+          <img [src]="postForm.get('image')?.value" alt="">
+          <lucide-angular 
+            name="x" 
+            class="img-container--delete"
+            (click)="onImageDelete()"
+          />
+        </div>
+      </ng-template>
+    </div>
+    <div class="create-posts--wrapper__text">
+      <textarea  
+        cols="30" 
+        placeholder="Заголовок"
+        rows="10"
+        formControlName="title"
+      ></textarea>
+      <textarea 
+        cols="30" 
+        placeholder="Содержание"
+        rows="10"
+        formControlName="description"
+      ></textarea>
+    </div>
+  </div>
+  <div class="create-posts__author">
+    <select formControlName="author">
+      <option 
+        *ngFor="let author of authorStore.authors" 
+        [ngValue]="author"
+      >
+        {{ author.name }} {{ author.lastName }}
+      </option>
+    </select>
+    <form 
+      [formGroup]="authorForm"
+      class="create-posts__author--new"
+      (submit)="onAddAuthor()"
+    >
+      <input 
+        type="text"
+        placeholder="Имя"
+        formControlName="name"
+      >
+      <input 
+        type="text"
+        placeholder="Фамилия"
+        formControlName="lastName"
+      >
+      <button 
+        [disabled]="!authorForm.valid" 
+        class="btn" 
+        type="submit"
+      >
+        Добавить автора
+      </button>
+    </form>
+  </div>
+  <button 
+    type="submit" 
+    class="btn create-post-btn"
+    [disabled]="!postForm.valid"
+  >
+    Создать пост
+  </button>
+</form>
