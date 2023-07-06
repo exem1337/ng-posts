@@ -26,8 +26,8 @@ export class Posts {
     this.posts.push(post);
   }
 
-  getPost(key: number) {
-    return this.posts.find(post => post.key === key);
+  getPost(key: number): IPost {
+    return this.posts.find(post => post.key === key) || {} as IPost;
   }
 
   removePost(key: number) {
