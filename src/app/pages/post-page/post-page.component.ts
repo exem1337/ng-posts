@@ -36,6 +36,7 @@ export class PostPageComponent implements OnInit {
       key: Math.random(),
       date: Date.now().toString()
     })
+    this.comment.reset();
   }
 
   onCommentDelete(key: number) {

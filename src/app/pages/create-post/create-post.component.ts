@@ -23,7 +23,7 @@ export class CreatePostComponent {
   postForm = this.fb.group({
     title: ['', Validators.required],
     description: ['', Validators.required],
-    image: [''],
+    image: ['', Validators.required],
     author: [{} as IAuthor, Validators.required]
   })
 
