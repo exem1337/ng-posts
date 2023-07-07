@@ -4,7 +4,6 @@ import { MobxAngularModule } from 'mobx-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PostComponent } from './components/post/post.component';
-import { CommentComponent } from './components/comment/comment.component';
 import { PostsPageComponent } from './pages/posts-page/posts-page.component';
 import { CreatePostComponent } from './pages/create-post/create-post.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -21,7 +20,6 @@ registerLocaleData(localeRu);
     AppComponent,
     PostComponent,
     PostsPageComponent,
-    CommentComponent,
     CreatePostComponent,
     HeaderComponent,
     PostPageComponent,

@@ -2,12 +2,34 @@
   <img [src]="post?.image" alt="">
   <div class="post-page--wrapper">
     <h1>{{ post?.title }}</h1>
-    <p>{{ post?.description }}</p>
+    <p class="post-page--wrapper__text">{{ post?.description }}</p>
     <div class="post-page--wrapper__info">
       <p>Автор: {{ post?.author?.name }} {{ post?.author?.lastName }}</p>
       <p>Дата создания: {{ post?.date | date }}</p>
     </div>
     <div class="post-page--wrapper__comments">
+      <p 
+        *ngIf="!post?.comments?.length else comments"
+        class="post-page--wrapper__comments--empty"
+      >
+        Комментариев нет
+      </p>
+      <ng-template #comments>
+        <div 
+          *ngFor="let comment of post?.comments;"
+          class="post-page--wrapper__comments--comment"
+        >
+          <lucide-angular 
+            name="x" 
+            class="post-page--wrapper__comments--comment__delete"
+            (click)="onCommentDelete(comment.key)"
+          />
+          <p class="post-page--wrapper__comments--comment__text">{{ comment.text }}</p>
+          <p class="post-page--wrapper__comments--comment__info">
+            Автор: {{ comment.author.name }} {{ comment.author.lastName }} | Дата создания: {{ comment.date | date }}
+          </p>
+        </div>
+      </ng-template>
       <label for="comment">Добавить комментарий</label>
       <div class="post-page--wrapper__comments--new">
         <div>
@@ -34,24 +56,6 @@
           Добавить
         </button>
       </div>
-      <p *ngIf="!post?.comments?.length else comments">Комментариев нет</p>
-      <ng-template #comments>
-        <div 
-          *ngFor="let comment of post?.comments"
-          class="post-page--wrapper__comments--comment"
-        >
-          <lucide-angular 
-            name="x" 
-            class="post-page--wrapper__comments--comment__delete"
-            (click)="onCommentDelete(comment.key)"
-          />
-          <p class="post-page--wrapper__comments--comment__text">{{ comment.text }}</p>
-          <p class="post-page--wrapper__comments--comment__info">
-            Автор: {{ comment.author.name }} {{ comment.author.lastName }} | Дата создания: {{ comment.date | date }}
-          </p>
-          <p class="post-page--wrapper__comments--comment__date"></p>
-        </div>
-      </ng-template>
     </div>
   </div>
 </div>

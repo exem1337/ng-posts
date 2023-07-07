@@ -18,7 +18,7 @@ export class Authors {
     this.localStorageSync();
   }
 
-  addAuthor(author: IAuthor) {
+  addAuthor(author: IAuthor): boolean {
     const foundAuthor = this.authors
       .find(auth => auth.lastName === author.lastName && author.name === auth.name);
 
@@ -29,10 +29,11 @@ export class Authors {
         sticky: true,
         duration: 5000,
       })
-      return;
+      return true;
     }
 
     this.authors.push(author);
+    return false;
   }
 
   private localStorageSync() {

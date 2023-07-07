@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, ValidationErrors, Validators } from '@angular/forms';
 import { Authors } from 'src/app/stores/authors.store';
 import { Posts } from 'src/app/stores/posts.store';
 import { IAuthor } from 'src/models/posts.model';
@@ -61,15 +61,20 @@ export class CreatePostComponent {
       name: this.authorForm.get('name')?.value!,
       lastName: this.authorForm.get('lastName')?.value!,
     }
+    const hasError = this.authorStore.addAuthor(newAuthor)
+    this.authorForm.reset();
+
+    if (hasError) {
+      return;
+    }
+
     this.postForm.patchValue({
       author: newAuthor
     })
-    this.authorStore.addAuthor(newAuthor)
-    this.authorForm.reset();
+    
   }
 
   onPostCreate() {
-    console.log(this.postForm.get('author')?.value?.key)
     this.postsStore.addPost({
       key: Math.random(),
       title: this.postForm.get('title')?.value!,

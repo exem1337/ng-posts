@@ -10,9 +10,16 @@
   &--wrapper {
     width: 100%;
 
+    &__text {
+      max-width: 100%;
+      overflow-wrap: break-word;
+    }
+
     h1 {
       margin-top: 12px;
       margin-bottom: 12px;
+      max-width: 100%;
+      overflow-wrap: break-word;
     }
 
     &__info {
@@ -28,6 +35,10 @@
     &__comments {
       margin-top: 24px;
       width: 100%;
+
+      &--empty {
+        margin-bottom: 24px;
+      }
 
       &--new {
         display: flex;
@@ -54,17 +65,22 @@
       &--comment {
         margin-bottom: 12px;
         padding-bottom: 12px;
-        border-bottom: 1px solid darkgray;
+        border-top: 1px solid darkgray;
         border-radius: 4px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
         transition: .3s ease;
+        padding: 4px;
         position: relative;
 
         &:hover {
           background-color: darken(white, 5%);
         }
 
-        &:last-child {
-          border-bottom: none;
+        &:first-child {
+          border-top: none;
+          border-top-left-radius: 4px;
+          border-top-right-radius: 4px;
         }
 
         &__info {

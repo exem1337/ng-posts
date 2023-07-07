@@ -50,6 +50,7 @@
       <option 
         *ngFor="let author of authorStore.authors" 
         [ngValue]="author"
+        [selected]="postForm.get('author')?.value?.key === author.key"
       >
         {{ author.name }} {{ author.lastName }}
       </option>
@@ -81,7 +82,7 @@
   <button 
     type="submit" 
     class="btn create-post-btn"
-    [disabled]="!postForm.valid"
+    [disabled]="!postForm.valid || !postForm.get('author')?.value?.key"
   >
     Создать пост
   </button>
